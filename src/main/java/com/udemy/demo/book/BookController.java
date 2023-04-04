@@ -4,12 +4,14 @@ import org.springframework.http.HttpStatus; // Importation de la classe HttpStat
 import org.springframework.http.ResponseEntity; // Importation de la classe ResponseEntity du package org.springframework.http
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays; // Importation de la classe Arrays du package java.util
 import java.util.List;
 
 // Creation des web services avec Spring MVC
 @RestController // permet de déclarer un bind Spring qui gère les requêtes HTTP et renvoie des réponses HTTP et qui permet de l'exposer au monde extérieur
 public class BookController { // Creation du endpoint "/books" qui permet d'afficher les livres disponibles
+    private List<Book> bookList = new ArrayList<>(); // Déclaration de la variable "bookList" de type "List" qui contient une liste de livres
 
     @GetMapping(value = "/books") // est une annotation Spring qui est utilisée pour mapper la méthode listBooks() à l'URL "/books". Cela signifie que lorsque l'application reçoit une requête HTTP GET à cette URL,
     // la méthode listBooks() sera exécutée et renverra une réponse HTTP contenant les informations demandées. // @RequestMapping(value="/books", method=RequestMethod.GET) + @ResponseBody (la valeur de retour est sérialisée en JSON)
