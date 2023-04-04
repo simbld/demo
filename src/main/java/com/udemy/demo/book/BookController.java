@@ -41,4 +41,9 @@ public class BookController { // Creation du endpoint "/books" qui permet d'affi
     public  ResponseEntity<Void> deleteBook(@PathVariable("bookId") String bookId) { // @PathVariable (@RequestParam) va bind l'Id dans l'url bookId dans la variable bookId
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping(value = "/books/{bookId}")
+    public  ResponseEntity<Void> updateBook(@PathVariable("bookId") String bookId, Book book) { // @PathVariable (@RequestParam) va bind l'Id dans l'url bookId dans la variable bookId
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
