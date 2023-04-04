@@ -1,10 +1,16 @@
 package com.udemy.demo.book;
 
-import jdk.jfr.Category;
-
 public class Book {
     private String title;
     private Category category;
+
+    public Book() {
+    }
+
+    public Book(String title, Category category) {
+        this.title = title;
+        this.category = category;
+    }
 
     public String getTitle() {
         return title;
@@ -19,11 +25,6 @@ public class Book {
     }
 
     public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Book(String title, Category category) {
-        this.title = title;
         this.category = category;
     }
 }
