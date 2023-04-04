@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController; // Importation de
 
 import java.util.Arrays; // Importation de la classe Arrays du package java.util
 
-@RestController // @Controller + @ResponseBody (la valeur de retour est sérialisée en JSON) + @RequestBody (le corps de la requête est désérialisé en objet Java)
-public class BookController { // @Controller + @ResponseBody (la valeur de retour est sérialisée en JSON) + @RequestBody (le corps de la requête est désérialisé en objet Java)
+@RestController // permet de déclarer un bean Spring qui gère les requêtes HTTP et renvoie des réponses HTTP et qui permet de l'exposer au monde extérieur
+public class BookController { // Creation du endpoint "/books" qui permet d'afficher les livres disponibles
 
     @GetMapping(value="/books") // est une annotation Spring qui est utilisée pour mapper la méthode listBooks() à l'URL "/books". Cela signifie que lorsque l'application reçoit une requête HTTP GET à cette URL,
     // la méthode listBooks() sera exécutée et renverra une réponse HTTP contenant les informations demandées. // @RequestMapping(value="/books", method=RequestMethod.GET) + @ResponseBody (la valeur de retour est sérialisée en JSON)
@@ -26,8 +26,9 @@ public class BookController { // @Controller + @ResponseBody (la valeur de retou
         book3.setTitle("MyBook3");
         book3.setCategory(new Category("Science"));
 
-        return new ResponseEntity(Arrays.asList(book1, book2, book3), HttpStatus.OK); // La méthode retourne un objet de type "ResponseEntity" qui permet de retourner une réponse HTTP personnalisée avec un code de statut et des en-têtes HTTP.
-        //la méthode retourne une liste de livres encapsulée dans un objet "ResponseEntity", avec un code d'état HTTP "200 OK"
-        // @ResponseBody  (la valeur de retour est sérialisée en JSON) + @RequestBody (le corps de la requête est désérialisé en objet Java)
+        return new ResponseEntity(Arrays.asList(book1, book2, book3), HttpStatus.OK); /* La méthode java Arrays.asList retourne a Spring MVC un new objet de type "ResponseEntity" dans lequel on va stocker la liste de livres et
+        qui permet de retourner une réponse HTTP personnalisée avec un code de statut et des en-têtes HTTP.
+        la méthode retourne une liste de livres encapsulée dans un objet new "ResponseEntity", avec un code d'état HTTP "200 OK"
+        @ResponseBody  (la valeur de retour est sérialisée en JSON) + @RequestBody (le corps de la requête est désérialisé en objet Java)*/
     }
 }
