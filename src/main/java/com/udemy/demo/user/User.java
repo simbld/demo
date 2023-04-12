@@ -1,11 +1,18 @@
 package com.udemy.demo.user;
 
+import jakarta.validation.constraints.Size;
+
 public class User {
 
+    @Size(min=2, max=25, message = "Le prénom doit comporter entre 2 et 25 caractères")
     private String firstname;
+    @Size(min=2, max=25, message = "Le prénom doit comporter entre 2 et 25 caractères")
     private String lastname;
     private String email;
     private String password;
+
+    public User() {
+    }
 
     public User(String email) {
         this.email = email;
