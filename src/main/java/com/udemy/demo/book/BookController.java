@@ -1,17 +1,19 @@
 package com.udemy.demo.book; // Déclaration du package contenant la classe
 
+
 import org.springframework.http.HttpStatus; // Importation de la classe HttpStatus du package org.springframework.http
-import org.springframework.http.ResponseEntity; // Importation de la classe ResponseEntity du package org.springframework.http
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.ArrayList;
-import java.util.Arrays; // Importation de la classe Arrays du package java.util
+import java.util.Arrays;
 import java.util.List;
 
 // Creation des web services avec Spring MVC
 @RestController // permet de déclarer un bind Spring qui gère les requêtes HTTP et renvoie des réponses HTTP et qui permet de l'exposer au monde extérieur
 public class BookController { // Creation du endpoint "/books" qui permet d'afficher les livres disponibles
-    private List<Book> bookList = new ArrayList<>(); // Déclaration de la variable "bookList" de type "List" qui contient une liste de livres
 
     @GetMapping(value = "/books") // est une annotation Spring qui est utilisée pour mapper la méthode listBooks() à l'URL "/books". Cela signifie que lorsque l'application reçoit une requête HTTP GET à cette URL,
     // la méthode listBooks() sera exécutée et renverra une réponse HTTP contenant les informations demandées. // @RequestMapping(value="/books", method=RequestMethod.GET) + @ResponseBody (la valeur de retour est sérialisée en JSON)
@@ -35,17 +37,28 @@ public class BookController { // Creation du endpoint "/books" qui permet d'affi
     }
     @PostMapping(value = "/books") /* est une annotation Spring qui est utilisée pour mapper la méthode addBook() à l'URL "/books". Cela signifie que lorsque l'application reçoit une requête HTTP POST à cette URL,
     la méthode addBook() sera exécutée et renverra une réponse HTTP contenant les informations demandées. */
-    public ResponseEntity<Book> addBook(Book book) {
-        return new ResponseEntity<>(book, HttpStatus.CREATED); // la méthode retourne un code d'état HTTP "201 CREATED"
+    public ResponseEntity addBook(@RequestBody Book book) {
+        return new ResponseEntity(book, HttpStatus.CREATED); // la méthode retourne un code d'état HTTP "201 CREATED"
     }
 
     @DeleteMapping(value = "/books/{bookId}")
-    public  ResponseEntity<Void> deleteBook(@PathVariable("bookId") String bookId) { // @PathVariable (@RequestParam) va bind l'Id dans l'url bookId dans la variable bookId
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public  ResponseEntity deleteBook(@PathVariable("bookId") String bookId) { // @PathVariable (@RequestParam) va bind l'Id dans l'url bookId dans la variable bookId
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(value = "/books/{bookId}")
-    public  ResponseEntity<Void> updateBook(@PathVariable("bookId") String bookId, Book book) { // @PathVariable (@RequestParam) va bind l'Id dans l'url bookId dans la variable bookId
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public  ResponseEntity updateBook(@PathVariable("bookId") String bookId,
+                                      @Validated
+                                      @RequestBody Book book) { // @PathVariable (@RequestParam) va bind l'Id dans l'url bookId dans la variable bookId
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/categories")
+    public ResponseEntity listCategories() {
+        Category categoryBd = new Category("BD");
+        Category categoryRoman = new Category("Roman");
+        Category categoryScience = new Category("Science");
+
+        return new ResponseEntity(Arrays.asList(categoryBd, categoryRoman, categoryScience), HttpStatus.OK);
     }
 }
