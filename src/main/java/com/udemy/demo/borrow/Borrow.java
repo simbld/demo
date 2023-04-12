@@ -12,6 +12,9 @@ public class Borrow {
     private LocalDate askDate;
     private LocalDate closeDate;
 
+    public Borrow() {
+    }
+
     public LocalDate getAskDate() {
         return askDate;
     }
