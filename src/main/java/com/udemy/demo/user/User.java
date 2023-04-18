@@ -1,17 +1,35 @@
 package com.udemy.demo.user;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Size(min=2, max=25, message = "Le prénom doit comporter entre 2 et 25 caractères")
     private String firstname;
-    @Size(min=2, max=25, message = "Le prénom doit comporter entre 2 et 25 caractères")
+    @Size(min=2, max=25, message = "Le nom doit comporter entre 2 et 25 caractères")
     private String lastname;
+
     private String email;
     private String password;
 
     public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User(String email) {
