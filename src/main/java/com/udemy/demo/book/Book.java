@@ -74,8 +74,8 @@ public class Book {
         return status;
     }
 
-    public void setStatus(BookStatus bookStatus) {
-        this.status = bookStatus;
+    public void setStatus(BookStatus status) {
+        this.status = status;
     }
 
     public boolean isDeleted() {
