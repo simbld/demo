@@ -9,4 +9,5 @@ import java.util.List;
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
     List<Book> findByStatusAndUserIdNotAndDeletedFalse (BookStatus bookStatus, Integer userId);
+    List<Book> findByUserIdAndDeletedFalse(Integer id);
 }
