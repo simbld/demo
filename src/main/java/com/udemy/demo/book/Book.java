@@ -23,7 +23,7 @@ public class Book {
     @Transient
     private int categoryId;
 
-    private BookStatus bookStatus;
+    private BookStatus status;
 
     private boolean deleted;
 
@@ -70,12 +70,12 @@ public class Book {
         this.categoryId = categoryId;
     }
 
-    public BookStatus getBookStatus() {
-        return bookStatus;
+    public BookStatus getStatus() {
+        return status;
     }
 
-    public void setBookStatus(BookStatus bookStatus) {
-        this.bookStatus = bookStatus;
+    public void setStatus(BookStatus status) {
+        this.status = status;
     }
 
     public boolean isDeleted() {
